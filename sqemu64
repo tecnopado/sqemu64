@@ -27,7 +27,7 @@ print
 print "[1] Create virtual disk"
 print "[2] Convert virtual in IMG"
 print "[3] Convert disk in VMDK"
-print "[4] Rresize disk"
+print "[4] Resize disk"
 print "[5] Boot disk"
 print "[6] Boot multiple disks"
 print "[7] Live CD"
@@ -75,7 +75,7 @@ start()
 def disco():
 	if select == 1:
 		var1 = raw_input("name of created disk: ")
-		var2 = raw_input("Disk capacity: (G=Giga M=Mega es. 8G) ")
+		var2 = raw_input("Disk capacity: (G=Giga M=Mega ex. 8G) ")
 		os.system("qemu-img create %s.img %s"%(var1,var2))
 		os.system("./sqemu64")
 disco()
@@ -83,7 +83,7 @@ disco()
 def convertimg():
 	if select == 2:
 		var1 = raw_input("Insert destination origin: (raw/qcow2/vdi/vmdk/vpc) ")
-		var2 = raw_input("Inserire il nome del disco origine con estensione: ")
+		var2 = raw_input("Insert name of origin's disk with extension: ")
 		var3 = raw_input("Get new disk name: ")
 		print
 		print "PLZ wait..."
@@ -93,7 +93,7 @@ convertimg()
 
 def convertvmdk():
 	if select == 3:
-		var1 = raw_input("Inserire il nome del disco origine senza estensione: ")
+		var1 = raw_input("Insert name of origin disk without extension: ")
 		var2 = raw_input("Get new disk name: ")
 		print
 		print "PLZ wait..."
@@ -137,36 +137,36 @@ plugin()
 
 def dischi():
 	if select == 6:
-		var1 = raw_input("Nome del disco primario: ")
-		var2 = raw_input("Nome del disco secondario: ")
-		var3 = raw_input("Quanta RAM? (es. 512M o 2047M) ")
-		var4 = input("Numero di CPU/Core da dedicare: ")
+		var1 = raw_input("name of created disk: ")
+		var2 = raw_input("Name of secondary disk: ")
+		var3 = raw_input("How many RAM? (ex. 512M o 2047M) ")
+		var4 = input("Number of CPU/Cores dedicated: ")
 		os.system("xdotool windowminimize $(xdotool getactivewindow); qemu-system-x86_64 --enable-kvm -smp %s -vga vmware -soundhw all -hda %s.img -hdb %s.img -m %s"%(var4,var1,var2,var3))
 		os.system("./sqemu64")
 dischi()
 
 def livemulti():
 	if select == 8:
-		var1 = raw_input("Nome del disco primario: ")
-		var3 = raw_input("Nome del disco secondario: ")
-		var2 = raw_input("Nome CD Iso: ")
+		var1 = raw_input("Name of primary disk: ")
+		var3 = raw_input("Name of secondary disk: ")
+		var2 = raw_input("ISO CD name: ")
 		os.system("xdotool windowminimize $(xdotool getactivewindow); qemu-system-x86_64 --enable-kvm -hda %s.img -hdb %s.img -vga std -soundhw all -boot d -cdrom %s.iso -m 512"%(var1,var3,var2))
 		os.system("./sqemu64")
 livemulti()
 
 def resize():
 	if select == 4:
-		var1 = raw_input("Nome del disco da ridimensiona: ")
-		var2 = raw_input("Nuova capacità disco: (G=Giga M=Mega es. 8G) ")
+		var1 = raw_input("Name of disk to resize: ")
+		var2 = raw_input("New capacity of disk: (G=Giga M=Mega es. 8G) ")
 		os.system("qemu-img resize %s.img %s"%(var1,var2))
 		os.system("./sqemu64")
 resize()
 
 def spice():
 	if select == 15:
-		var1 = raw_input("Nome del disco creato: ")
-		var2 = raw_input("Quanta RAM? (es. 512M o 2047M) ")
-		var3 = input("Numero di CPU/Core da dedicare: ")
+		var1 = raw_input("Name of created disk: ")
+		var2 = raw_input("How many RAM? (ex. 512M o 2047M) ")
+		var3 = input("Number of CPU/Cores dedicated: ")
 		os.system("xdotool windowminimize $(xdotool getactivewindow); kvm --enable-kvm -smp %s -vga vmware -soundhw all -spice port=5900,addr=127.0.0.1,disable-ticketing -hda %s.img -m %s"%(var3,var1,var2))
 		os.system("./sqemu32")
 spice()
