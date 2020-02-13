@@ -18,10 +18,10 @@ print " L    ,MM YM.  ,MM YM        MM    MM    MM  YM.   MM "
 print " MYMMMM9   YMMMM9M  YMMMMM9  MM    MM    MM   YMMM9MM "
 print "                MM                                    "
 print "                MM            \script qemu/           "
-print "                MM            /code alexis\           "
+print "                MM            /           \           "
 print
 
-print "sQemu version for 64bit"
+print "sQemu version for 64bit-ALPHA1,_final32bit_a richiesta"
 print "----------------------"
 print
 print "[1] Create virtual disk"
